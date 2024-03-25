@@ -1,0 +1,17 @@
+// hero/hero.proto
+syntax = "proto3";
+
+package inventory;
+
+service InventoryService {
+  rpc FindOne (InventoryById) returns (Inventory) {}
+}
+
+message InventoryById {
+  int32 id = 1;
+}
+
+message Inventory {
+  int32 id = 1;
+  string name = 2;
+}

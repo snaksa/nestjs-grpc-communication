@@ -1,0 +1,2 @@
+protoc \
+ --plugin="protoc-gen-ts=./node_modules/ts-proto/protoc-gen-ts_proto" --ts_proto_out="generated"  proto/**/*.proto

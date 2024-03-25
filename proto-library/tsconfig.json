@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+    "baseUrl": "./generated",
+    "declaration": true,
+  }
+}
