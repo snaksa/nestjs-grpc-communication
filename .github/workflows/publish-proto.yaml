@@ -16,12 +16,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: Install dependencies
+      - name: Generate TS files
         working-directory: ./proto-library
         run: |
           docker build -t proto-library:local .
           docker run --rm -v ./generated:/app/generated proto-library:local
-          ls -la ./generated
+      - name: Publish to GitHub Packages
+        run: |
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
 
 #  publish-gpr:
 #    needs: build

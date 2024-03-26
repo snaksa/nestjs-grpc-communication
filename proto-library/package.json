@@ -1,5 +1,5 @@
 {
-  "name": "proto-library",
+  "name": "@snaksa/proto-library",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
