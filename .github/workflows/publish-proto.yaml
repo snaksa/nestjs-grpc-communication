@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'proto-library/**'
+  workflow_dispatch:
 
 jobs:
   build:
