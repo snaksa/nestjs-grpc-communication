@@ -11,20 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - name: Generate TS files
-        working-directory: ./proto-library
-        run: |
-          docker build -t proto-library:local .
-          docker run --rm -v ./generated:/app/generated proto-library:local
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
@@ -34,8 +20,31 @@ jobs:
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
+      - name: Generate TS files
+        working-directory: ./proto-library
+        run: |
+          docker build -t proto-library:local .
+          docker run --rm -v ./generated:/app/generated proto-library:local
       - name: Publish package
         working-directory: ./proto-library
         run: ls -la
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
+
+#  publish:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#      packages: write
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: 20
+#          registry-url: https://npm.pkg.github.com/
+#      - name: Publish package
+#        working-directory: ./proto-library
+#        run: ls -la
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
