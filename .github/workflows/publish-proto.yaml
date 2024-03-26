@@ -16,8 +16,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - run: cd proto-library
-      - run: npm ci
+      - name: Install dependencies
+        working-directory: ./proto-library
+        run: npm ci
 
 #  publish-gpr:
 #    needs: build
