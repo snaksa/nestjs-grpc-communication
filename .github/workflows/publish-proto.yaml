@@ -20,7 +20,7 @@ jobs:
         working-directory: ./proto-library
         run: |
           docker build -t proto-library:local .
-          docker run ./generated:/app/generated proto-library:local
+          docker run --rm -v ./generated:/app/generated proto-library:local
           ls -la ./generated
 
 #  publish-gpr:
