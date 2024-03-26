@@ -22,6 +22,7 @@ jobs:
           docker build -t proto-library:local .
           docker run --rm -v ./generated:/app/generated proto-library:local
       - name: Publish to GitHub Packages
+        working-directory: ./proto-library
         run: |
           npm publish
         env:
