@@ -18,7 +18,10 @@ jobs:
           node-version: 20
       - name: Install dependencies
         working-directory: ./proto-library
-        run: npm ci
+        run: |
+          docker build -t proto-library:local .
+          docker run ./generated:/app/generated proto-library:local
+          ls -la ./generated
 
 #  publish-gpr:
 #    needs: build
