@@ -24,10 +24,10 @@ jobs:
         working-directory: ./proto-library
         run: |
           docker build -t proto-library:local .
-          docker run --rm -v ./generated:/app/generated proto-library:local
+          docker run --rm -v ./types:/app/generated/proto proto-library:local
       - name: Publish package
         working-directory: ./proto-library
-        run: ls -la
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
 
