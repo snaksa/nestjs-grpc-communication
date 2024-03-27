@@ -28,12 +28,12 @@ jobs:
       - name: Publish package
         working-directory: ./proto-library
         run: |
-          latest_version=$(npm show @snaksa/proto-library version)
-          # Split the input string by dot and extract X, Y, and Z
-          IFS='.' read -r X Y Z <<< "$latest_version"
-          ((Z++))
-          new_version="$X.$Y.$Z"
-          npm version $new_version --no-git-tag-version --force --allow-same-version
+#          latest_version=$(npm show @snaksa/proto-library version)
+#          # Split the input string by dot and extract X, Y, and Z
+#          IFS='.' read -r X Y Z <<< "$latest_version"
+#          ((Z++))
+#          new_version="$X.$Y.$Z"
+#          npm version $new_version --no-git-tag-version --force --allow-same-version
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
