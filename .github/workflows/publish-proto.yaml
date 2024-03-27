@@ -34,7 +34,7 @@ jobs:
           ((Z++))
           new_version="$X.$Y.$Z"
           npm version $new_version --no-git-tag-version --force --allow-same-version
-          npm publish
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
 
