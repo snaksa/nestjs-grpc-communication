@@ -1,17 +1,23 @@
-// hero/hero.proto
 syntax = "proto3";
 
 package catalog;
 
-service CatalogService {
-  rpc FindOne (CatalogById) returns (Catalog) {}
-}
-
-message CatalogById {
-  int32 id = 1;
-}
+import "inventory/inventory.proto";
 
 message Catalog {
   int32 id = 1;
   string name = 2;
+  repeated inventory.Item items = 3;
+}
+
+service CatalogService {
+  rpc FindCatalog (FindCatalogRequest) returns (FindCatalogResponse) {}
+}
+
+message FindCatalogRequest {
+  int32 id = 1;
+}
+
+message FindCatalogResponse {
+  Catalog catalog = 1;
 }

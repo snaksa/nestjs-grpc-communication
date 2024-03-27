@@ -18,6 +18,7 @@ RUN mkdir -p generated
 
 CMD ["sh", "-c", "protoc \
                        --plugin=protoc-gen-ts=./node_modules/ts-proto/protoc-gen-ts_proto \
+                       --proto_path=proto \
                        --ts_proto_opt=nestJs=true \
                        --ts_proto_out=generated \
                        proto/**/*.proto \

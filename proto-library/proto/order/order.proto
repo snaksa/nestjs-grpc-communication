@@ -1,17 +1,18 @@
-// hero/hero.proto
 syntax = "proto3";
 
 package order;
 
 service OrderService {
-  rpc FindOne (OrderById) returns (Order) {}
+  rpc SubmitOrder (SubmitOrderRequest) returns (SubmitOrderResponse) {}
 }
 
-message OrderById {
-  int32 id = 1;
+message SubmitOrderRequest {
+  repeated int32 itemIds = 1;
+  string customerName = 2;
+  string customerEmail = 3;
 }
 
-message Order {
-  int32 id = 1;
-  string name = 2;
+message SubmitOrderResponse {
+  bool status = 1;
+  string error = 2;
 }
