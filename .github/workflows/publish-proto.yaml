@@ -28,6 +28,7 @@ jobs:
       - name: Publish package
         working-directory: ./proto-library
         run: |
+          ls -la
           latest_version=$(npm show @snaksa/proto-library version)
           # Split the input string by dot and extract X, Y, and Z
           IFS='.' read -r X Y Z <<< "$latest_version"
