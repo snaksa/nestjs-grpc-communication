@@ -24,7 +24,7 @@ jobs:
         working-directory: ./proto-library
         run: |
           docker build -t proto-library:local .
-          docker run --rm -v ./types:/app/generated/proto proto-library:local
+          docker run --rm -v ./types:/app/generated proto-library:local
       - name: Publish package
         working-directory: ./proto-library
         run: |
@@ -38,21 +38,3 @@ jobs:
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
-
-#  publish:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    permissions:
-#      contents: read
-#      packages: write
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-node@v3
-#        with:
-#          node-version: 20
-#          registry-url: https://npm.pkg.github.com/
-#      - name: Publish package
-#        working-directory: ./proto-library
-#        run: ls -la
-#        env:
-#          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
